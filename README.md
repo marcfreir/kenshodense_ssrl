@@ -31,7 +31,7 @@ The backbone maps a view to a feature map $F = f(v) \in \mathbb{R}^{C \times H \
 - **Dense projector** $h$: the same MLP implemented with $1 \times 1$ convolutions, which preserves the spatial layout, followed by adaptive average pooling to an $S \times S$ grid, giving $\mathbb{R}^{D \times S \times S}$.
 - **Global predictor** $q$ and **dense predictor** $r$ (online only): Linear$(D, d_p)$ → BN → ReLU → Linear$(d_p, D)$, and its $1 \times 1$-convolution counterpart.
 
-Throughout, $\bar{u} = u / \lVert u \rVert_2$ denotes $\ell_2$ normalisation, $\operatorname{sg}(\cdot)$ the stop-gradient operator, and $s, j \in \{1, \dots, S^2\}$ index the cells of the grid.
+Throughout, $\bar{u} = u / \lVert u \rVert_2$ denotes $\ell_2$ normalisation, $\mathrm{sg}(\cdot)$ the stop-gradient operator, and $s, j \in \{1, \dots, S^2\}$ index the cells of the grid.
 
 ### Online and target representations
 
@@ -72,13 +72,13 @@ Both terms of the objective use the normalised regression loss of BYOL, $2 - 2\l
 The **global loss** with respect to target $k$ is
 
 ```math
-\mathcal{L}^{k}_{\mathrm{global}} = 2 - 2 \big\langle p,\, \operatorname{sg}(z^{k}) \big\rangle ,
+\mathcal{L}^{k}_{\mathrm{global}} = 2 - 2 \big\langle p,\, \mathrm{sg}(z^{k}) \big\rangle ,
 ```
 
 and the **dense loss** with respect to target $k$, averaged over the grid, is
 
 ```math
-\mathcal{L}^{k}_{\mathrm{dense}} = \frac{1}{S^{2}} \sum_{s=1}^{S^{2}} \Big( 2 - 2 \big\langle p^{s},\, \operatorname{sg}\big(z^{k,\,c_k(s)}\big) \big\rangle \Big) .
+\mathcal{L}^{k}_{\mathrm{dense}} = \frac{1}{S^{2}} \sum_{s=1}^{S^{2}} \Big( 2 - 2 \big\langle p^{s},\, \mathrm{sg}\big(z^{k,\,c_k(s)}\big) \big\rangle \Big) .
 ```
 
 The two are combined with a weight $\lambda \in [0, 1]$ and averaged over the $N-1$ targets:
