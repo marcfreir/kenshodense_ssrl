@@ -1,0 +1,10 @@
+torch>=2.5
+torchvision>=0.20
+lightning>=2.1
+torchmetrics>=1.3
+numpy>=1.23
+scipy>=1.10
+pandas>=2.0
+# Minerva (https://github.com/discovery-unicamp/Minerva) — must provide
+# minerva.data.data_modules.f3 (F3DataModule, default_test_transforms).
+# Install it separately, e.g.:  pip install git+https://github.com/discovery-unicamp/Minerva.git
